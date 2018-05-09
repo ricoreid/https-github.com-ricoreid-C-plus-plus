@@ -5,14 +5,23 @@
 #include <fstream>
 #include <cstring>
 #include <string>
+#include <windows.h>
+#include <cstdlib>
+#include <stdlib.h>
 
 using namespace std;
 
 void zmienicWartosci(int*, int*);
 void robicPemutacji(int*, int, int, fstream&);
+int silnia(int);
+int obliczycPermutacje(int);
+
 
 int main() {
 
+	// Program introduction
+	cout << "This program displays all the possible permutations from a given set of N inputs '1 - N''." << endl << endl;
+	
 	fstream off;
 	string plikNazwa;
 	cout << "Prosze podac imie: ";
@@ -34,7 +43,10 @@ int main() {
 		cin >> tab[i];
 		cout << endl;
 	}
-
+	
+	
+	cout << "Ilosc permutacji: " << obliczycPermutacje(rozmiarTablicy) << endl << endl;
+	
 	robicPemutacji(tab, 0, rozmiarTablicy - 1, off);
 
 	delete tab;
@@ -74,5 +86,22 @@ void robicPemutacji(int *tab, int indeks, int rozmiarTab, fstream &off) {
 			zmienicWartosci((tab + indeks), (tab + j));
 		}
 	}
+
+}
+
+int obliczycPermutacje(int perm) {
+
+	return silnia(perm);
+
+}
+
+int silnia(int wart) {
+
+	int rezult = 1;
+	for (int i = wart; i != 0; i--) {
+
+		rezult *= i;
+	}
+	return rezult;
 
 }
