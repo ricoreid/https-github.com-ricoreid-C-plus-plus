@@ -10,15 +10,15 @@ class Node
 	public:
 		Node(int);
 		~Node();
-		bool search(int);
+		bool searchInOrder(int);
 		void insert(int);
 		void del(int);
 		void printInOrder();
 
 	private:
+		int data = 0;
 		Node *left = NULL;
 		Node *right = NULL;
-		int data = 0;
 };
 
 #endif

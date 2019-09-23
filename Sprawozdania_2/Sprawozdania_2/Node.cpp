@@ -10,30 +10,22 @@ Node::Node(int d)
 }
 Node::~Node() {
 
-
+	delete left;
+	delete right;
 }
-bool Node::search(int val) {
-
-	if (val == data)
-	{
+bool Node::searchInOrder(int val)
+{
+	//left->root->right
+	
+	if (data == val)
 		return true;
-
-	}
-	else if (val < data)
-	{
-		if (left == NULL)
-			return false;
-		else
-			return left->search(val);
-	}
+	else if (left != NULL && data > val)
+		return left->searchInOrder(val);
+	else if (right != NULL && data < val)
+		return right->searchInOrder(val);
 	else
-	{
-		if (right == NULL)
-			return false;
-		else
-			return right->search(val);
-	}
-
+		return false;
+	
 }
 void Node::insert(int val) {
 
